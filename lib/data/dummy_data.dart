@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class DummyData {
-  Future<void> createDatabase() async {
+  void createDatabase() async {
     final pref = await SharedPreferences.getInstance();
     final userlist = json.encode(
       {

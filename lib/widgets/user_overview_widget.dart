@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:bank_app/models/user.dart';
 import 'package:bank_app/widgets/user_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -38,6 +39,11 @@ class _UserOverviewWidgetState extends State<UserOverviewWidget> {
 
   @override
   Widget build(BuildContext context) {
+    // final func = _loadUserList();
+    // return FutureBuilder(
+    //     future: func,
+    //     builder: (c, data) {
+    //       if (data.connectionState == ConnectionState.done) {
     return Container(
       child: _isLoading
           ? Center(
