@@ -64,6 +64,5 @@ class UserItem extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }

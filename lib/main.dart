@@ -1,9 +1,8 @@
-import 'package:bank_app/models/user.dart';
-import 'package:bank_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
+import 'package:bank_app/screens/home_screen.dart';
+
+void main() async {
   runApp(MyApp());
 }
 
