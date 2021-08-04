@@ -28,6 +28,36 @@ class DummyData {
             'email': 'viswanath@gmail.com',
             'balance': 5000.00,
           },
+          {
+            'name': 'Iqbal Singh',
+            'email': 'iqbal@gmail.com',
+            'balance': 10000.70,
+          },
+          {
+            'name': 'Suryakumar panda',
+            'email': 'suryakumar@gmail.com',
+            'balance': 12370.70,
+          },
+          {
+            'name': 'Anuj Pandey',
+            'email': 'anuj@gmail.com',
+            'balance': 52000.70,
+          },
+          {
+            'name': 'Ankita Nayak',
+            'email': 'ankita@gmail.com',
+            'balance': 100370.70,
+          },
+          {
+            'name': 'Binay Kaml',
+            'email': 'binay@gmail.com',
+            'balance': 17700.00,
+          },
+          {
+            'name': 'Saina Talpade',
+            'email': 'saina@gmail.com',
+            'balance': 1500000.70,
+          },
         ],
       },
     );

@@ -1,8 +1,9 @@
+import 'package:bank_app/screens/user_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'package:bank_app/screens/home_screen.dart';
 
-void main() async {
+void main() {
   runApp(MyApp());
 }
 

@@ -38,19 +38,53 @@ class _UserOverviewWidgetState extends State<UserOverviewWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        color: Colors.blue.shade700,
+      ),
       child: _isLoading
           ? Center(
               child: CircularProgressIndicator(),
             )
-          : ListView.builder(
-              itemBuilder: (ctx, i) {
-                var user = _userdata['data'];
-                return UserItem(
-                  name: user[i]['name'],
-                  email: user[i]['email'],
-                );
-              },
-              itemCount: _userdata['data'].length,
+          : Column(
+              children: <Widget>[
+                Container(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Contacts',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                  margin: EdgeInsets.only(
+                    top: 20,
+                    left: 20,
+                    bottom: 8,
+                  ),
+                ),
+                Container(
+                  height: MediaQuery.of(context).size.height - 305,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (ctx, i) {
+                      var user = _userdata['data'];
+                      return UserItem(
+                        name: user[i]['name'],
+                        email: user[i]['email'],
+                        balance: user[i]['balance'],
+                      );
+                    },
+                    itemCount: _userdata['data'].length,
+                  ),
+                ),
+              ],
             ),
     );
   }
