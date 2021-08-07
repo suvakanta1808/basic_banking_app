@@ -1,5 +1,6 @@
 import 'package:bank_app/helper/db_helper.dart';
 import 'package:bank_app/models/user.dart';
+import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:flutter/material.dart';
 
 class UserSelectionScreen extends StatefulWidget {
@@ -131,15 +132,11 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                                                       (error, stackTrace) =>
                                                           print(error))
                                                   .then((value) {
-                                                Navigator.pop(ctx);
-                                                Navigator.pop(context);
-                                                ScaffoldMessenger.of(ctx)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                        'Transaction Successful.'),
-                                                  ),
-                                                );
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (c) =>
+                                                            TransactionResultScreen()));
                                               });
                                             }
                                           },
