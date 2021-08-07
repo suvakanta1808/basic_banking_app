@@ -1,5 +1,8 @@
 import 'dart:convert';
 
+import 'package:bank_app/data/dummy_data.dart';
+import 'package:bank_app/helper/db_helper.dart';
+import 'package:bank_app/models/user.dart';
 import 'package:bank_app/widgets/user_item.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -12,20 +15,28 @@ class UserOverviewWidget extends StatefulWidget {
 }
 
 class _UserOverviewWidgetState extends State<UserOverviewWidget> {
-  Map<String, dynamic> _userdata = {};
+  //Map<String, dynamic> _userdata = {};
+  List<User> userList = [];
   var _isLoading = false;
 
   Future<void> _loadUserList() async {
     setState(() {
       _isLoading = true;
     });
-    final pref = await SharedPreferences.getInstance();
-    final userData = pref.getString('userList');
-    final data = json.decode(userData.toString()) as Map<String, dynamic>;
-    print(data);
-    setState(() {
-      _userdata = data;
-      _isLoading = false;
+    await DBHelper().dataBase.then((db) async {
+      final res = await db.query('User');
+      List<User> userData = [];
+      res.forEach((user) {
+        userData.add(User(
+          userName: '${user['name']}',
+          email: '${user['email']}',
+          balance: double.parse(user['balance'].toString()),
+        ));
+      });
+      setState(() {
+        userList = userData;
+        _isLoading = false;
+      });
     });
   }
 
@@ -45,47 +56,44 @@ class _UserOverviewWidgetState extends State<UserOverviewWidget> {
         ),
         color: Colors.blue.shade700,
       ),
-      child: _isLoading
-          ? Center(
-              child: CircularProgressIndicator(),
-            )
-          : Column(
-              children: <Widget>[
-                Container(
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Contacts',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                  margin: EdgeInsets.only(
-                    top: 20,
-                    left: 20,
-                    bottom: 8,
-                  ),
-                ),
-                Container(
-                  height: MediaQuery.of(context).size.height - 305,
-                  child: ListView.builder(
-                    shrinkWrap: true,
-                    itemBuilder: (ctx, i) {
-                      var user = _userdata['data'];
-                      return UserItem(
-                        name: user[i]['name'],
-                        email: user[i]['email'],
-                        balance: user[i]['balance'],
-                      );
-                    },
-                    itemCount: _userdata['data'].length,
+      child: Column(
+        children: <Widget>[
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  'Contacts',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
               ],
             ),
+            margin: EdgeInsets.only(
+              top: 20,
+              left: 20,
+              bottom: 8,
+            ),
+          ),
+          Container(
+            height: MediaQuery.of(context).size.height - 305,
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemBuilder: (ctx, i) {
+                print(userList);
+                return UserItem(
+                  name: userList[i].userName,
+                  email: userList[i].email,
+                  balance: userList[i].balance,
+                  //  list: _userdata,
+                );
+              },
+              itemCount: userList.length,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
