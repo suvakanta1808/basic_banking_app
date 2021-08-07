@@ -1,4 +1,5 @@
 import 'package:bank_app/helper/db_helper.dart';
+import 'package:bank_app/models/transfer.dart';
 import 'package:bank_app/models/user.dart';
 import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,13 @@ class UserSelectionScreen extends StatefulWidget {
 class _UserSelectionScreenState extends State<UserSelectionScreen> {
   List<User> userList = [];
   var _isLoading = false;
+
+  Future<void> updateHandler(
+      User sender, User receiver, Transfer transfer) async {
+    await DBHelper().updateUserTable(sender, receiver);
+
+    await DBHelper().updateTransfersTable(transfer);
+  }
 
   Future<void> _loadUserList() async {
     setState(() {
@@ -36,8 +44,6 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
       });
     });
   }
-
-  _initiateTransaction() async {}
 
   @override
   void initState() {
@@ -125,12 +131,17 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                                                     double.parse(
                                                         _amountController.text),
                                               );
-                                              await DBHelper()
-                                                  .updateDatabse(
-                                                      sender, receiver)
-                                                  .onError(
-                                                      (error, stackTrace) =>
-                                                          print(error))
+
+                                              var transfer = new Transfer(
+                                                id: DateTime.now().toString(),
+                                                sender: sender.userName,
+                                                receiver: receiver.userName,
+                                                amount: double.parse(
+                                                    _amountController.text),
+                                                status: 'Successful',
+                                              );
+                                              await updateHandler(sender,
+                                                      receiver, transfer)
                                                   .then((value) {
                                                 Navigator.push(
                                                     context,

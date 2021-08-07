@@ -1,3 +1,4 @@
+import 'package:bank_app/screens/trasaction_history_screen.dart';
 import 'package:flutter/material.dart';
 
 class ServicePanel extends StatelessWidget {
@@ -71,7 +72,14 @@ class ServicePanel extends StatelessWidget {
                     CircleAvatar(
                       backgroundColor: Colors.blue.shade800,
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => TransactionHistoryScreen(),
+                            ),
+                          );
+                        },
                         icon: Icon(
                           Icons.history_rounded,
                           color: Colors.white,

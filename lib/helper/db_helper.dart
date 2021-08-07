@@ -5,6 +5,7 @@ import 'package:bank_app/models/user.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import '../models/transfer.dart';
 
 class DBHelper {
   static Database? _db;
@@ -29,14 +30,27 @@ class DBHelper {
           });
         });
       });
+      await db.execute(
+          'CREATE TABLE Transfers (id, TEXT PRIMARY KEY , sender TEXT , receiver TEXT, amount DOUBLE, status TEXT)');
     });
   }
 
-  Future<void> updateDatabse(User sender, User receiver) async {
+  Future<void> updateUserTable(User sender, User receiver) async {
     final db = await dataBase;
     await db.update('User', {'balance': receiver.balance},
         where: 'name = ?', whereArgs: [receiver.userName]);
     await db.update('User', {'balance': sender.balance},
         where: 'name = ?', whereArgs: [sender.userName]);
+  }
+
+  Future<void> updateTransfersTable(Transfer tr) async {
+    final db = await dataBase;
+    await db.insert('Transfers', {
+      'id': tr.id,
+      'sender': tr.sender,
+      'receiver': tr.receiver,
+      'amount': tr.amount,
+      'status': tr.status,
+    });
   }
 }
