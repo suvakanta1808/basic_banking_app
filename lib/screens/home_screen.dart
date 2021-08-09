@@ -25,9 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
-                SizedBox(
-                  height: 5,
-                ),
                 WelcomePanel(),
                 SizedBox(
                   height: 60,

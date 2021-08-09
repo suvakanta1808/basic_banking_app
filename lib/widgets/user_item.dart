@@ -50,6 +50,7 @@ class UserItem extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 18,
                       fontWeight: FontWeight.w700,
+                      fontFamily: 'Roboto Condensed',
                     ),
                   ),
                 ),
@@ -59,6 +60,7 @@ class UserItem extends StatelessWidget {
                     email,
                     style: TextStyle(
                       fontSize: 13,
+                      fontFamily: 'Spartan',
                     ),
                   ),
                 ),

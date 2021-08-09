@@ -9,19 +9,25 @@ class WelcomePanel extends StatelessWidget {
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
-        color: Colors.blue.shade700,
+        color: Color.lerp(Colors.blue.shade400, Colors.blue.shade800, 0.7),
       ),
       child: Padding(
         padding: const EdgeInsets.all(15.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
+            SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Text(
                   'Home 🏠',
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontFamily: 'Roboto Condensed',
+                  ),
                 ),
                 IconButton(
                   onPressed: () {},
@@ -37,11 +43,19 @@ class WelcomePanel extends StatelessWidget {
             ),
             Text(
               'Welcome to \'Basic Banking App\'',
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Roboto Condensed',
+              ),
             ),
             Text(
-              'We build | We run | We Conquere.',
-              style: TextStyle(fontSize: 15),
+              'A whole new digital world.',
+              style: TextStyle(
+                fontSize: 15,
+                fontFamily: 'Roboto Condensed',
+                fontStyle: FontStyle.italic,
+              ),
             ),
             SizedBox(
               height: 50,

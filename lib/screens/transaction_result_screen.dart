@@ -69,7 +69,12 @@ class TransactionResultScreen extends StatelessWidget {
                     );
                   },
                   icon: Icon(Icons.exit_to_app),
-                  label: Text('Return to Home'),
+                  label: Container(
+                      padding: EdgeInsets.all(20),
+                      child: Text(
+                        'Return to Home',
+                        style: TextStyle(fontSize: 17),
+                      )),
                   elevation: 0,
                   materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 ),

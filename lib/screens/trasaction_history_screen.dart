@@ -1,5 +1,6 @@
 import 'package:bank_app/helper/db_helper.dart';
 import 'package:bank_app/models/transfer.dart';
+import 'package:bank_app/widgets/transaction_history_item.dart';
 import 'package:flutter/material.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
@@ -46,6 +47,7 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: Text('Transaction History'),
       ),
       body: Container(
@@ -53,37 +55,74 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
         width: MediaQuery.of(context).size.width,
         child: _isLoading
             ? Center(
-                child: CircularProgressIndicator(),
+                child: Text('Loading...'),
               )
             : Column(
                 children: [
                   Container(
-                    padding: EdgeInsets.all(8),
+                    color: Colors.blue.shade400,
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 5,
+                      vertical: 7,
+                    ),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('From'),
-                        Text('To'),
-                        Text('Amount'),
-                        Text('Status'),
+                        Container(
+                          alignment: Alignment.center,
+                          width: (MediaQuery.of(context).size.width - 16) / 4,
+                          child: Text(
+                            'From',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: (MediaQuery.of(context).size.width - 16) / 4,
+                          child: Text(
+                            'To',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: (MediaQuery.of(context).size.width - 16) / 4,
+                          child: Text(
+                            'Amount',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                        Container(
+                          alignment: Alignment.center,
+                          width: (MediaQuery.of(context).size.width - 16) / 4,
+                          child: Text(
+                            'Status',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
                       ],
                     ),
                   ),
+                  Divider(
+                    thickness: 2,
+                  ),
                   Container(
-                    height: MediaQuery.of(context).size.height - 120,
+                    height: MediaQuery.of(context).size.height - 130,
                     child: ListView.builder(
-                      itemBuilder: (ctx, i) => Container(
-                        padding: EdgeInsets.all(8),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(_transactions[i].sender),
-                            Text(_transactions[i].receiver),
-                            Text(_transactions[i].amount.toString()),
-                            Text(_transactions[i].status),
-                          ],
-                        ),
-                      ),
+                      itemBuilder: (ctx, i) =>
+                          TransactionHistoryItem(_transactions[i]),
                       itemCount: _transactions.length,
                     ),
                   ),

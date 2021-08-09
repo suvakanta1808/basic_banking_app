@@ -46,7 +46,9 @@ class ServicePanel extends StatelessWidget {
                     SizedBox(
                       height: 5,
                     ),
-                    Text('Account'),
+                    Text(
+                      'Account',
+                    ),
                   ],
                 ),
                 Column(
