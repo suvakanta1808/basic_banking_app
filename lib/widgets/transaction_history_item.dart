@@ -40,7 +40,7 @@ class TransactionHistoryItem extends StatelessWidget {
                 alignment: Alignment.center,
                 width: (MediaQuery.of(context).size.width - 16) / 4,
                 child: Text(
-                  tr.amount.toString(),
+                  tr.amount.toStringAsFixed(2),
                   style: TextStyle(
                     fontFamily: 'Spartan',
                     fontSize: 12,

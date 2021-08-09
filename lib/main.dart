@@ -1,3 +1,4 @@
+import 'package:bank_app/screens/splash_screen.dart';
 import 'package:bank_app/screens/user_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -26,7 +27,7 @@ class _MyAppState extends State<MyApp> {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
+      home: SplashScreen(),
     );
   }
 }

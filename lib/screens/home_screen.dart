@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:bank_app/widgets/service_panel.dart';
 import 'package:bank_app/widgets/welcome_panel.dart';
 import 'package:flutter/material.dart';

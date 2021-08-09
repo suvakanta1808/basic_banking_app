@@ -36,8 +36,12 @@ class TransactionResultScreen extends StatelessWidget {
               height: 230,
               width: 230,
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(130),
-                  border: Border.all(color: Colors.green.shade700, width: 14)),
+                borderRadius: BorderRadius.circular(130),
+                border: Border.all(
+                  color: Colors.green.shade700,
+                  width: 14,
+                ),
+              ),
               child: Column(
                 children: <Widget>[
                   Column(

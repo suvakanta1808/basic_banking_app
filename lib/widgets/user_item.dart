@@ -55,11 +55,11 @@ class UserItem extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 120,
+                  width: 140,
                   child: Text(
                     email,
                     style: TextStyle(
-                      fontSize: 13,
+                      fontSize: 12,
                       fontFamily: 'Spartan',
                     ),
                   ),
@@ -67,7 +67,7 @@ class UserItem extends StatelessWidget {
               ],
             ),
             SizedBox(
-              width: 70,
+              width: 60,
             ),
             IconButton(
               onPressed: () {

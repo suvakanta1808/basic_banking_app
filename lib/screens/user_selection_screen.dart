@@ -94,72 +94,66 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                                 onPressed: () {
                                   showDialog(
                                     context: ctx,
-                                    builder: (ctx) => SingleChildScrollView(
-                                      child: AlertDialog(
-                                        title: Text('Enter the amount'),
-                                        content: TextField(
-                                          keyboardType: TextInputType.number,
-                                          controller: _amountController,
-                                        ),
-                                        actions: [
-                                          TextButton(
-                                            onPressed: () async {
-                                              if (_amountController
-                                                      .text.isEmpty ||
-                                                  double.parse(_amountController
-                                                          .text) <=
-                                                      0.0) {
-                                                ScaffoldMessenger.of(ctx)
-                                                    .showSnackBar(
-                                                  SnackBar(
-                                                    content: Text(
-                                                        'Amount field can not be empty or must be greter than 0.0'),
-                                                  ),
-                                                );
-                                              } else {
-                                                var receiver = new User(
-                                                  userName:
-                                                      userList[i].userName,
-                                                  email: userList[i].email,
-                                                  balance: userList[i].balance +
-                                                      double.parse(
-                                                          _amountController
-                                                              .text),
-                                                );
-                                                var sender = new User(
-                                                  userName:
-                                                      widget.sender.userName,
-                                                  email: widget.sender.email,
-                                                  balance:
-                                                      widget.sender.balance -
-                                                          double.parse(
-                                                              _amountController
-                                                                  .text),
-                                                );
-
-                                                var transfer = new Transfer(
-                                                  id: DateTime.now().toString(),
-                                                  sender: sender.userName,
-                                                  receiver: receiver.userName,
-                                                  amount: double.parse(
-                                                      _amountController.text),
-                                                  status: 'Success',
-                                                );
-                                                await updateHandler(sender,
-                                                        receiver, transfer)
-                                                    .then((value) {
-                                                  Navigator.push(
-                                                      context,
-                                                      MaterialPageRoute(
-                                                          builder: (c) =>
-                                                              TransactionResultScreen()));
-                                                });
-                                              }
-                                            },
-                                            child: Text('CONFIRM'),
-                                          )
-                                        ],
+                                    builder: (ctx) => AlertDialog(
+                                      title: Text('Enter the amount'),
+                                      content: TextField(
+                                        keyboardType: TextInputType.number,
+                                        controller: _amountController,
                                       ),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () async {
+                                            if (_amountController
+                                                    .text.isEmpty ||
+                                                double.parse(_amountController
+                                                        .text) <=
+                                                    0.0) {
+                                              ScaffoldMessenger.of(ctx)
+                                                  .showSnackBar(
+                                                SnackBar(
+                                                  content: Text(
+                                                      'Amount field can not be empty or must be greter than 0.0'),
+                                                ),
+                                              );
+                                            } else {
+                                              var receiver = new User(
+                                                userName: userList[i].userName,
+                                                email: userList[i].email,
+                                                balance: userList[i].balance +
+                                                    double.parse(
+                                                        _amountController.text),
+                                              );
+                                              var sender = new User(
+                                                userName:
+                                                    widget.sender.userName,
+                                                email: widget.sender.email,
+                                                balance: widget.sender.balance -
+                                                    double.parse(
+                                                        _amountController.text),
+                                              );
+
+                                              var transfer = new Transfer(
+                                                id: DateTime.now().toString(),
+                                                sender: sender.userName,
+                                                receiver: receiver.userName,
+                                                amount: double.parse(
+                                                    _amountController.text),
+                                                status: 'Success',
+                                              );
+                                              await updateHandler(sender,
+                                                      receiver, transfer)
+                                                  .then((value) {
+                                                Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (c) =>
+                                                            TransactionResultScreen()));
+                                              });
+                                            }
+                                          },
+                                          child: Text('CONFIRM'),
+                                        )
+                                      ],
                                     ),
                                   );
                                 },
