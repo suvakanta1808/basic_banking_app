@@ -3,18 +3,12 @@ import 'package:bank_app/screens/user_selection_screen.dart';
 import 'package:flutter/material.dart';
 
 class UserDetailsScreen extends StatelessWidget {
-  static const routeName = 'user-detail';
+  static const routeName = '/user-detail';
 
-  final String name;
-  final String email;
-  final double curBalance;
-  UserDetailsScreen({
-    required this.name,
-    required this.email,
-    required this.curBalance,
-  });
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments as User;
+
     return Scaffold(
       appBar: AppBar(
         title: Text('User Profile'),
@@ -59,7 +53,7 @@ class UserDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        name,
+                        user.userName,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Spartan',
@@ -81,7 +75,7 @@ class UserDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        email,
+                        user.email,
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Spartan',
@@ -103,7 +97,7 @@ class UserDetailsScreen extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        curBalance.toStringAsFixed(2),
+                        user.balance.toStringAsFixed(2),
                         style: TextStyle(
                           fontSize: 12,
                           fontFamily: 'Spartan',
@@ -123,17 +117,9 @@ class UserDetailsScreen extends StatelessWidget {
                 RaisedButton(
                   color: Colors.amber,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => UserSelectionScreen(
-                          User(
-                            userName: name,
-                            email: email,
-                            balance: curBalance,
-                          ),
-                        ),
-                      ),
+                    Navigator.of(context).pushNamed(
+                      UserSelectionScreen.routeName,
+                      arguments: user,
                     );
                   },
                   child: Container(

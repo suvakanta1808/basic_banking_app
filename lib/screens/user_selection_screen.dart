@@ -5,9 +5,7 @@ import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:flutter/material.dart';
 
 class UserSelectionScreen extends StatefulWidget {
-  final User sender;
-
-  UserSelectionScreen(this.sender);
+  static const routeName = '/user-selection';
 
   @override
   _UserSelectionScreenState createState() => _UserSelectionScreenState();
@@ -53,6 +51,8 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = ModalRoute.of(context)!.settings.arguments as User;
+
     final _amountController = new TextEditingController();
 
     return Scaffold(
@@ -68,7 +68,7 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
               width: MediaQuery.of(context).size.width,
               child: ListView.builder(
                 itemBuilder: (ctx, i) {
-                  if (userList[i].userName != widget.sender.userName) {
+                  if (userList[i].userName != user.userName) {
                     return Card(
                       child: Padding(
                         padding: const EdgeInsets.all(15.0),
@@ -124,10 +124,9 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                                                         _amountController.text),
                                               );
                                               var sender = new User(
-                                                userName:
-                                                    widget.sender.userName,
-                                                email: widget.sender.email,
-                                                balance: widget.sender.balance -
+                                                userName: user.userName,
+                                                email: user.email,
+                                                balance: user.balance -
                                                     double.parse(
                                                         _amountController.text),
                                               );
@@ -143,11 +142,13 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                                               await updateHandler(sender,
                                                       receiver, transfer)
                                                   .then((value) {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (c) =>
-                                                            TransactionResultScreen()));
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                                Navigator.of(context)
+                                                    .pushReplacementNamed(
+                                                        TransactionResultScreen
+                                                            .routeName);
                                               });
                                             }
                                           },

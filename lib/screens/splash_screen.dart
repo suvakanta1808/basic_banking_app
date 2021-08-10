@@ -17,12 +17,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Timer startTimer() {
     return Timer(Duration(seconds: 4), () {
-      Navigator.of(context).pop();
-      Navigator.push(
+      Navigator.pushReplacementNamed(
         context,
-        MaterialPageRoute(
-          builder: (ctx) => HomeScreen(),
-        ),
+        HomeScreen.routeName,
       );
     });
   }

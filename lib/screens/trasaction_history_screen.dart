@@ -4,6 +4,7 @@ import 'package:bank_app/widgets/transaction_history_item.dart';
 import 'package:flutter/material.dart';
 
 class TransactionHistoryScreen extends StatefulWidget {
+  static const routeName = '/history';
   @override
   _TransactionHistoryScreenState createState() =>
       _TransactionHistoryScreenState();

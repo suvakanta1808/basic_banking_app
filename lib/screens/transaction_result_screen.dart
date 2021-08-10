@@ -2,6 +2,8 @@ import 'package:bank_app/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 
 class TransactionResultScreen extends StatelessWidget {
+  static const routeName = '/result';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -65,12 +67,8 @@ class TransactionResultScreen extends StatelessWidget {
                 RaisedButton.icon(
                   color: Colors.amber,
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (ctx) => HomeScreen(),
-                      ),
-                    );
+                    Navigator.of(context)
+                        .pushReplacementNamed(HomeScreen.routeName);
                   },
                   icon: Icon(Icons.exit_to_app),
                   label: Container(

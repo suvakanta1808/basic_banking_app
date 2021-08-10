@@ -8,6 +8,8 @@ import 'package:bank_app/data/dummy_data.dart';
 import 'package:bank_app/widgets/user_overview_widget.dart';
 
 class HomeScreen extends StatefulWidget {
+  static const routeName = '\home';
+
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }

@@ -1,3 +1,4 @@
+import 'package:bank_app/models/user.dart';
 import 'package:bank_app/screens/user_detail_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +17,11 @@ class UserItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var user = User(
+      userName: name,
+      email: email,
+      balance: balance,
+    );
     return Card(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
@@ -71,17 +77,8 @@ class UserItem extends StatelessWidget {
             ),
             IconButton(
               onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (ctx) => UserDetailsScreen(
-                      name: name,
-                      email: email,
-                      curBalance: balance,
-                    ),
-                    //  settings: RouteSettings(arguments: list),
-                  ),
-                );
+                Navigator.of(context)
+                    .pushNamed(UserDetailsScreen.routeName, arguments: user);
               },
               icon: Icon(
                 Icons.chevron_right_rounded,
