@@ -51,12 +51,16 @@ class _SplashScreenState extends State<SplashScreen> {
               child: Column(
                 children: [
                   CircleAvatar(
-                    radius: 70,
-                    child: Icon(
-                      Icons.support_agent_sharp,
-                      size: 65,
-                    ),
-                  ),
+                      backgroundColor: Colors.white,
+                      radius: 90,
+                      child: Image(
+                        image: AssetImage('assets/images/logo.png'),
+                      )
+                      // Icon(
+                      //   Icons.support_agent_sharp,
+                      //   size: 65,
+                      // ),
+                      ),
                   SizedBox(
                     height: 10,
                   ),
@@ -79,18 +83,31 @@ class _SplashScreenState extends State<SplashScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    'Designed by :',
-                    style: TextStyle(fontWeight: FontWeight.w300, fontSize: 18),
+                    'Powered by :',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w300,
+                      fontSize: 13,
+                    ),
                   ),
                   SizedBox(
                     height: 5,
                   ),
-                  Text(
-                    'Suvakanta Mohapatra',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w300,
-                      fontStyle: FontStyle.italic,
-                    ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Image(
+                        image: AssetImage('assets/images/ad_logo.jpg'),
+                        height: 30,
+                        width: 30,
+                      ),
+                      Text(
+                        'The Sparks Foundation',
+                        style: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          fontSize: 18,
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
