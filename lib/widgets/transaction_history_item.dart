@@ -15,7 +15,7 @@ class TransactionHistoryItem extends StatelessWidget {
           Row(
             children: [
               Container(
-                alignment: Alignment.center,
+                alignment: Alignment.centerLeft,
                 width: (MediaQuery.of(context).size.width - 16) / 4,
                 child: Text(
                   tr.sender,

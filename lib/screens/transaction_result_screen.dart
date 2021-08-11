@@ -45,18 +45,14 @@ class TransactionResultScreen extends StatelessWidget {
                 ),
               ),
               child: Column(
-                children: <Widget>[
-                  Column(
-                    children: [
-                      Text(
-                        '✅',
-                        style: TextStyle(fontSize: 22),
-                      ),
-                      Text(
-                        'Transaction Successful.',
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
+                children: [
+                  Text(
+                    '✔',
+                    style: TextStyle(fontSize: 22),
+                  ),
+                  Text(
+                    'Transaction Successful.',
+                    style: TextStyle(fontSize: 18),
                   ),
                 ],
               ),

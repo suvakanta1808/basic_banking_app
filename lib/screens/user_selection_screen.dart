@@ -1,6 +1,7 @@
 import 'package:bank_app/helper/db_helper.dart';
 import 'package:bank_app/models/transfer.dart';
 import 'package:bank_app/models/user.dart';
+import 'package:bank_app/screens/payment_screen.dart';
 import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,13 +15,6 @@ class UserSelectionScreen extends StatefulWidget {
 class _UserSelectionScreenState extends State<UserSelectionScreen> {
   List<User> userList = [];
   var _isLoading = false;
-
-  Future<void> updateHandler(
-      User sender, User receiver, Transfer transfer) async {
-    await DBHelper().updateUserTable(sender, receiver);
-
-    await DBHelper().updateTransfersTable(transfer);
-  }
 
   Future<void> _loadUserList() async {
     setState(() {
@@ -52,8 +46,6 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
   @override
   Widget build(BuildContext context) {
     final user = ModalRoute.of(context)!.settings.arguments as User;
-
-    final _amountController = new TextEditingController();
 
     return Scaffold(
       appBar: AppBar(
@@ -91,74 +83,23 @@ class _UserSelectionScreenState extends State<UserSelectionScreen> {
                               ],
                             ),
                             IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                    context: ctx,
-                                    builder: (ctx) => AlertDialog(
-                                      title: Text('Enter the amount'),
-                                      content: TextField(
-                                        keyboardType: TextInputType.number,
-                                        controller: _amountController,
-                                      ),
-                                      actions: [
-                                        TextButton(
-                                          onPressed: () async {
-                                            if (_amountController
-                                                    .text.isEmpty ||
-                                                double.parse(_amountController
-                                                        .text) <=
-                                                    0.0) {
-                                              ScaffoldMessenger.of(ctx)
-                                                  .showSnackBar(
-                                                SnackBar(
-                                                  content: Text(
-                                                      'Amount field can not be empty or must be greter than 0.0'),
-                                                ),
-                                              );
-                                            } else {
-                                              var receiver = new User(
-                                                userName: userList[i].userName,
-                                                email: userList[i].email,
-                                                balance: userList[i].balance +
-                                                    double.parse(
-                                                        _amountController.text),
-                                              );
-                                              var sender = new User(
-                                                userName: user.userName,
-                                                email: user.email,
-                                                balance: user.balance -
-                                                    double.parse(
-                                                        _amountController.text),
-                                              );
+                              onPressed: () {
+                                var receiver = new User(
+                                  userName: userList[i].userName,
+                                  email: userList[i].email,
+                                  balance: userList[i].balance,
+                                );
 
-                                              var transfer = new Transfer(
-                                                id: DateTime.now().toString(),
-                                                sender: sender.userName,
-                                                receiver: receiver.userName,
-                                                amount: double.parse(
-                                                    _amountController.text),
-                                                status: 'Success',
-                                              );
-                                              await updateHandler(sender,
-                                                      receiver, transfer)
-                                                  .then((value) {
-                                                Navigator.pop(context);
-                                                Navigator.pop(context);
-                                                Navigator.pop(context);
-                                                Navigator.of(context)
-                                                    .pushReplacementNamed(
-                                                        TransactionResultScreen
-                                                            .routeName);
-                                              });
-                                            }
-                                          },
-                                          child: Text('CONFIRM'),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                                icon: Icon(Icons.radio_button_off))
+                                Navigator.of(context).pushReplacementNamed(
+                                  PaymentScreen.routeName,
+                                  arguments: [
+                                    user,
+                                    receiver,
+                                  ],
+                                );
+                              },
+                              icon: Icon(Icons.radio_button_off),
+                            ),
                           ],
                         ),
                       ),

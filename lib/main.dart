@@ -1,3 +1,4 @@
+import 'package:bank_app/screens/payment_screen.dart';
 import 'package:bank_app/screens/splash_screen.dart';
 import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:bank_app/screens/trasaction_history_screen.dart';
@@ -33,6 +34,7 @@ class _MyAppState extends State<MyApp> {
       home: SplashScreen(),
       routes: {
         HomeScreen.routeName: (ctx) => HomeScreen(),
+        PaymentScreen.routeName: (ctx) => PaymentScreen(),
         UserDetailsScreen.routeName: (ctx) => UserDetailsScreen(),
         UserSelectionScreen.routeName: (ctx) => UserSelectionScreen(),
         TransactionResultScreen.routeName: (ctx) => TransactionResultScreen(),

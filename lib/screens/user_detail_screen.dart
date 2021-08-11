@@ -20,9 +20,14 @@ class UserDetailsScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              color: Colors.white,
-              height: 250,
+              decoration: BoxDecoration(
+                border: Border.all(color: Colors.blue.shade800),
+                borderRadius: BorderRadius.circular(5),
+                color: Colors.white,
+              ),
+              height: 350,
               margin: EdgeInsets.all(30),
+              padding: EdgeInsets.all(25),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
