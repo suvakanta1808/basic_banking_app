@@ -1,15 +1,17 @@
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
 import 'package:bank_app/screens/payment_screen.dart';
 import 'package:bank_app/screens/splash_screen.dart';
 import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:bank_app/screens/trasaction_history_screen.dart';
 import 'package:bank_app/screens/user_detail_screen.dart';
 import 'package:bank_app/screens/user_selection_screen.dart';
-import 'package:flutter/material.dart';
-
 import 'package:bank_app/screens/home_screen.dart';
 
 void main() {
   runApp(MyApp());
+  SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
 }
 
 class MyApp extends StatefulWidget {

@@ -121,11 +121,26 @@ class _TransactionHistoryScreenState extends State<TransactionHistoryScreen> {
                   ),
                   Container(
                     height: MediaQuery.of(context).size.height - 130,
-                    child: ListView.builder(
-                      itemBuilder: (ctx, i) =>
-                          TransactionHistoryItem(_transactions[i]),
-                      itemCount: _transactions.length,
-                    ),
+                    child: _transactions.length == 0
+                        ? Center(
+                            child: Container(
+                              margin: EdgeInsets.only(top: 100),
+                              child: Column(
+                                children: [
+                                  Icon(
+                                    Icons.storage_rounded,
+                                    size: 55,
+                                  ),
+                                  Text('No records found.')
+                                ],
+                              ),
+                            ),
+                          )
+                        : ListView.builder(
+                            itemBuilder: (ctx, i) =>
+                                TransactionHistoryItem(_transactions[i]),
+                            itemCount: _transactions.length,
+                          ),
                   ),
                 ],
               ),
