@@ -1,18 +1,46 @@
+import 'dart:async';
+
 import 'package:bank_app/helper/db_helper.dart';
 import 'package:bank_app/models/transfer.dart';
 import 'package:bank_app/models/user.dart';
 import 'package:bank_app/screens/transaction_result_screen.dart';
 import 'package:flutter/material.dart';
 
-class PaymentScreen extends StatelessWidget {
+class PaymentScreen extends StatefulWidget {
   static const routeName = '\payment';
+
+  @override
+  _PaymentScreenState createState() => _PaymentScreenState();
+}
+
+class _PaymentScreenState extends State<PaymentScreen> {
   final _amountController = new TextEditingController();
+  var _isInProgress = false;
 
   Future<void> updateHandler(
       User sender, User receiver, Transfer transfer) async {
     await DBHelper().updateUserTable(sender, receiver);
 
     await DBHelper().updateTransfersTable(transfer);
+  }
+
+  Timer _startTimer() {
+    setState(() {
+      _isInProgress = true;
+    });
+    var timer = new Timer(
+      Duration(seconds: 3),
+      () {
+        setState(() {
+          _isInProgress = false;
+          Navigator.pop(context);
+          Navigator.pop(context);
+          Navigator.of(context)
+              .pushReplacementNamed(TransactionResultScreen.routeName);
+        });
+      },
+    );
+    return timer;
   }
 
   @override
@@ -31,11 +59,23 @@ class PaymentScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
+                margin: EdgeInsets.only(
+                  top: 35,
+                  left: 10,
+                ),
+                child: Row(
+                  children: [
+                    Icon(Icons.animation),
+                    Text('Processing your transaction...'),
+                  ],
+                ),
+              ),
+              Container(
                 height: MediaQuery.of(context).size.height * 0.4,
                 width: MediaQuery.of(context).size.width * 0.7,
                 padding: EdgeInsets.all(20),
                 margin: EdgeInsets.only(
-                  top: 200,
+                  top: 160,
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -98,8 +138,9 @@ class PaymentScreen extends StatelessWidget {
                             borderRadius: BorderRadius.circular(25),
                           ),
                           child: TextField(
-                            decoration:
-                                InputDecoration(border: InputBorder.none),
+                            decoration: InputDecoration(
+                              border: InputBorder.none,
+                            ),
                             style: TextStyle(
                                 color: Colors.white, fontFamily: 'Spartan'),
                             keyboardType: TextInputType.number,
@@ -166,19 +207,16 @@ class PaymentScreen extends StatelessWidget {
                           await updateHandler(
                                   sendingUser, receivingUser, transfer)
                               .then((value) {
-                            Navigator.pop(context);
-                            Navigator.pop(context);
-                            Navigator.of(context).pushReplacementNamed(
-                                TransactionResultScreen.routeName);
+                            _startTimer();
                           });
                         }
                       },
                       color: Colors.amber,
                       child: Text(
-                        'Pay',
+                        _isInProgress ? 'Transfering...Please Wait.' : 'Pay',
                         style: TextStyle(
                           fontWeight: FontWeight.w300,
-                          fontSize: 20,
+                          fontSize: 16,
                         ),
                       ),
                     ),

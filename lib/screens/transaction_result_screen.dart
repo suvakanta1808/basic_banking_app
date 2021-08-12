@@ -48,7 +48,10 @@ class TransactionResultScreen extends StatelessWidget {
                 children: [
                   Text(
                     '✔',
-                    style: TextStyle(fontSize: 22),
+                    style: TextStyle(
+                      fontSize: 45,
+                      color: Colors.green,
+                    ),
                   ),
                   Text(
                     'Transaction Successful.',

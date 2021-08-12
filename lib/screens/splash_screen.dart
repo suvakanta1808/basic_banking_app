@@ -41,6 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               margin: EdgeInsets.only(
                 top: 60,
+                left: 80,
               ),
             ),
             Container(

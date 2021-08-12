@@ -39,22 +39,24 @@ class WelcomePanel extends StatelessWidget {
               ],
             ),
             SizedBox(
-              height: 30,
+              height: 25,
             ),
             Text(
-              'Welcome to \'Basic Banking App\'',
+              'Welcome to Basic Banking App',
               style: TextStyle(
-                fontSize: 25,
+                fontSize: 22,
                 fontWeight: FontWeight.bold,
-                fontFamily: 'Roboto Condensed',
+                fontFamily: 'Spartan',
               ),
             ),
+            SizedBox(
+              height: 5,
+            ),
             Text(
-              'A whole new digital world.',
+              '\"A whole new digital world.\"',
               style: TextStyle(
                 fontSize: 15,
                 fontFamily: 'Roboto Condensed',
-                fontStyle: FontStyle.italic,
               ),
             ),
             SizedBox(
