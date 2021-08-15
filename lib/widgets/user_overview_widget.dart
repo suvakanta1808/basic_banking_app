@@ -1,11 +1,7 @@
-import 'dart:convert';
-
-import 'package:bank_app/data/dummy_data.dart';
 import 'package:bank_app/helper/db_helper.dart';
 import 'package:bank_app/models/user.dart';
 import 'package:bank_app/widgets/user_item.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class UserOverviewWidget extends StatefulWidget {
   const UserOverviewWidget({Key? key}) : super(key: key);
@@ -15,14 +11,9 @@ class UserOverviewWidget extends StatefulWidget {
 }
 
 class _UserOverviewWidgetState extends State<UserOverviewWidget> {
-  //Map<String, dynamic> _userdata = {};
   List<User> userList = [];
-  var _isLoading = false;
 
   Future<void> _loadUserList() async {
-    setState(() {
-      _isLoading = true;
-    });
     await DBHelper().dataBase.then((db) async {
       final res = await db.query('User');
       List<User> userData = [];
@@ -35,7 +26,6 @@ class _UserOverviewWidgetState extends State<UserOverviewWidget> {
       });
       setState(() {
         userList = userData;
-        _isLoading = false;
       });
     });
   }
@@ -86,7 +76,6 @@ class _UserOverviewWidgetState extends State<UserOverviewWidget> {
                   name: userList[i].userName,
                   email: userList[i].email,
                   balance: userList[i].balance,
-                  //  list: _userdata,
                 );
               },
               itemCount: userList.length,

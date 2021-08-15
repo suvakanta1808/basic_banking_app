@@ -1,9 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:bank_app/helper/db_helper.dart';
-import 'package:bank_app/models/transfer.dart';
 import 'package:bank_app/models/user.dart';
 import 'package:bank_app/screens/payment_screen.dart';
-import 'package:bank_app/screens/transaction_result_screen.dart';
-import 'package:flutter/material.dart';
 
 class UserSelectionScreen extends StatefulWidget {
   static const routeName = '/user-selection';

@@ -1,10 +1,6 @@
-import 'dart:async';
-
+import 'package:flutter/material.dart';
 import 'package:bank_app/widgets/service_panel.dart';
 import 'package:bank_app/widgets/welcome_panel.dart';
-import 'package:flutter/material.dart';
-
-import 'package:bank_app/data/dummy_data.dart';
 import 'package:bank_app/widgets/user_overview_widget.dart';
 
 class HomeScreen extends StatefulWidget {

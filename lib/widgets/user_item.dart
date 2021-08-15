@@ -6,13 +6,11 @@ class UserItem extends StatelessWidget {
   final String name;
   final String email;
   final double balance;
-//  final Map<String, dynamic> list;
 
   UserItem({
     required this.name,
     required this.email,
     required this.balance,
-//    required this.list,
   });
 
   @override
