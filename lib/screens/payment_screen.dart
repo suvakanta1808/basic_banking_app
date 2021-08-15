@@ -231,12 +231,12 @@ class _PaymentScreenState extends State<PaymentScreen> {
                           ),
                         ),
                         Image(
-                          image: AssetImage('assets/images/ad_logo.jpg'),
-                          height: 20,
-                          width: 20,
+                          image: AssetImage('assets/images/bank.png'),
+                          height: 30,
+                          width: 30,
                         ),
                         Text(
-                          'The Sparks Foundation',
+                          'The Shark Industries',
                           style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: 12,

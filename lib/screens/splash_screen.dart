@@ -28,6 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        color: Colors.white,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -93,15 +94,15 @@ class _SplashScreenState extends State<SplashScreen> {
                     height: 5,
                   ),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Image(
-                        image: AssetImage('assets/images/ad_logo.jpg'),
-                        height: 30,
-                        width: 30,
+                        image: AssetImage('assets/images/bank.png'),
+                        height: 40,
+                        width: 40,
                       ),
                       Text(
-                        'The Sparks Foundation',
+                        'The Shark Industries',
                         style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: 18,
