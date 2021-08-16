@@ -1,6 +1,7 @@
-# bank_app
+# Basic_banking_app
 
-A new Flutter project.
+  - A simple app in which multiple transactions can be performed between multiple users.
+  - All the transaction records are stored in local database.
 
 ## Getting Started
 
